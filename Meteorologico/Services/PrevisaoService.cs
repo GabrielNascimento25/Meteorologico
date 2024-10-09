@@ -11,10 +11,12 @@ namespace Meteorologico.Services
     {
         private Previsoes previsoes;
         private List<Previsoes> previsos;
-        public PrevisaoService() 
+        static async Task Main(string[] args)
         {
-            
+            String estadosUrl = "https://brasilapi.com.br/api/ibge/uf/v1";
         }
+
+        
     }
 }
 
