@@ -1,6 +1,7 @@
-﻿using Meteorologico.Provisorio;
+﻿using Meteorologico.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Meteorologico.Services
 {
-    public class PrevisaoService
+    public class CidadeService
     {
         private HttpClient httpClient;
         private JsonSerializerOptions jsonSerializerOptions;
-        public PrevisaoService()
+        public CidadeService()
         {
             httpClient = new HttpClient();
             jsonSerializerOptions = new JsonSerializerOptions
@@ -21,17 +22,17 @@ namespace Meteorologico.Services
                 WriteIndented = true
             };
         }
-        public async Task<Previsoes> getPost()
+        public async Task<ObservableCollection<Cidades>> getCidade()
         {
             Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
-            Previsoes items = new Previsoes();
+            ObservableCollection<Cidades> items = new ObservableCollection<Cidades>();
             try
             {
                 HttpResponseMessage response = await httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
                     string content = await response.Content.ReadAsStringAsync();
-                    items = JsonSerializer.Deserialize<Previsoes>(content, jsonSerializerOptions);
+                    items = JsonSerializer.Deserialize<ObservableCollection<Cidades>>(content, jsonSerializerOptions);
                 }
             }
             catch (Exception ex)
@@ -42,5 +43,3 @@ namespace Meteorologico.Services
 
     }
 }
-
-

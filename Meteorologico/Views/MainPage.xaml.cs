@@ -1,4 +1,4 @@
-﻿namespace Meteorologico
+﻿namespace Meteorologico.Views
 {
     public partial class MainPage : ContentPage
     {
