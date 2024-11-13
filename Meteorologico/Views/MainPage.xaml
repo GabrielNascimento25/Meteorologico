@@ -1,17 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Meteorologico.Views.MainPage">
+             x:Class="Meteorologico.Views.MainPage"
+             xmlns:vm="clr-namespace:Meteorologico.ViewModel">
 
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Label Text="Escolha o estado.">
-                
-            </Label>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label Text="Escolha a cidade"
+                   FontSize="20"
+                   HorizontalOptions="Center" />
             
-           
+            <Picker ItemsSource="{Binding Cidades}"
+                    SelectedItem="{Binding SelectedCidade}"
+                    ItemDisplayBinding="{Binding Nome}"
+                    Title="Selecione a Cidade"
+                    HeightRequest="40" />
+
+            <Button Text="Buscar Previsão"
+                    Command="{Binding GetPrevisaoCommand}"
+                    WidthRequest="200"
+                    HeightRequest="50"
+                    BackgroundColor="#0078D4"
+                    TextColor="White"
+                    HorizontalOptions="Center" />
+
+            <StackLayout IsVisible="{Binding SelectedCidade}" Spacing="10">
+                <Label Text="{Binding Previsao.CondicaoDesc}"
+                       FontSize="18" FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+
+                <Label Text="Temperatura:"
+                       FontSize="16" HorizontalOptions="Center" />
+                <Label Text="Mnima: {Binding Previsao.Min}°C | Máxima: {Binding Previsao.Max}°C"
+                       FontSize="16" HorizontalOptions="Center" />
+
+                <Label Text="Índice UV: {Binding Previsao.IndiceUV}"
+                       FontSize="16" HorizontalOptions="Center" />
+
+                <Label Text="Data da Previsão: {Binding Previsao.DataEm}"
+                       FontSize="16" HorizontalOptions="Center" />
+            </StackLayout>
+
+            <Label Text="{Binding Previsao.Message}"
+                   TextColor="Red"
+                   FontSize="14"
+                   HorizontalOptions="Center" />
+
         </VerticalStackLayout>
     </ScrollView>
 

@@ -10,7 +10,7 @@ namespace Meteorologico.Models
 {
     public class Cidades : ObservableCollection<Cidades>
     {
-        private String siglaUF {  get; set; }
+        private String   siglaUF {  get; set; }
         private String nome {  get; set; }
     }
 }

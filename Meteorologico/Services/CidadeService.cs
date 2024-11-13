@@ -26,7 +26,7 @@ namespace Meteorologico.Services
         {
             Uri uri = new Uri("https://jsonplaceholder.typicode.com/posts");
             ObservableCollection<Cidades> items = new ObservableCollection<Cidades>();
-            try
+            try 
             {
                 HttpResponseMessage response = await httpClient.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
@@ -35,7 +35,7 @@ namespace Meteorologico.Services
                     items = JsonSerializer.Deserialize<ObservableCollection<Cidades>>(content, jsonSerializerOptions);
                 }
             }
-            catch (Exception ex)
+            catch (Exception vnex)
             {
             }
             return items;
